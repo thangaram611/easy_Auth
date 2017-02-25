@@ -1,0 +1,19 @@
+{
+  "name": "fyp",
+  "version": "1.0.0",
+  "description": "final year project CEG",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thangaram611/authentication_service.git"
+  },
+  "author": "thangaram611 gokularam sakthi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thangaram611/authentication_service/issues"
+  },
+  "homepage": "https://github.com/thangaram611/authentication_service#readme"
+}
