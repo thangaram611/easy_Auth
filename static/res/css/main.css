@@ -1,6 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 /*-----------------------------------------------------------------------------------*/
+
+
 /*  0.  CSS Reset
 /*-----------------------------------------------------------------------------------*/
 
@@ -59,6 +61,7 @@ table {
 html, body {
   font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
   font-size: 12px;
+  position: static;
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -72,11 +75,14 @@ html, body {
 
 
 /*-----------------------------------------------------------------------------------*/
+
+
 /*  1.  Form
 /*-----------------------------------------------------------------------------------*/
 
 body {
   background: #76b852;
+  overflow: hidden;
   /* fallback for old browsers */
   background: -webkit-linear-gradient(right, #76b852, #8DC26F);
   background: -moz-linear-gradient(right, #76b852, #8DC26F);

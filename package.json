@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/thangaram611/authentication_service/issues"
   },
-  "homepage": "https://github.com/thangaram611/authentication_service#readme"
+  "homepage": "https://github.com/thangaram611/authentication_service#readme",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "mongojs": "^2.4.0"
+  }
 }
