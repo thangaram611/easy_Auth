@@ -27,7 +27,6 @@ app.post('/register', function(req, res) {
 		if (err) {
 			console.log(err);
 		} else {
-			console.log("no error in insertion");
 			res.send(true);
 		}
 	});
@@ -51,30 +50,27 @@ app.post('/checkregistered', function(req, res) {
 // QRcode generation
 app.post('/qrcode', function(req, res) {
 	var secret = speakeasy.generateSecret({ length: 20 });
-	console.log(secret.base32);
-	secrets.insert({ "email": req.body.email, "secretkey": secret.base32 }, function(err) {
+	secrets.insert({ "email": req.body.email, "secretkey": secret }, function(err) {
 		if (err) {
 			console.log(err);
 		} else {
-			console.log("secret inserted")
+			console.log("secret inserted");
 		}
 	});
+	console.log(secret + "this is inserted with" + req.body.email);
 	QRCode.toDataURL(secret.otpauth_url, function(err, data_url) {
 		res.send(data_url);
 	});
 });
 // token handling
 app.post('/checktoken', function(req, res) {
-	console.log(global.email);
 	secrets.findOne({ 'email': global.email }, function(err, doc) {
-		console.log(doc);
 		var verified = false;
 		var token = speakeasy.totp({
-			secret: doc.secret,
+			secret: doc.secretkey.base32,
 			encoding: 'base32'
 		});
-		console.log(token);
-		if(token == req.body.token){
+		if (token == req.body.token) {
 			verified = true;
 		}
 		res.send(verified);
