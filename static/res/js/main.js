@@ -17,7 +17,7 @@ $(document).ready(function() {
 		$.post('/register', req, function(data) {
 			if (data) {
 				console.log('done');
-				var req = {"email": email};
+				var req = { "email": email };
 				$.post('/qrcode', req, function(data) {
 					$('.login-page').hide();
 					$('.twofactor-page').addClass('visible');
