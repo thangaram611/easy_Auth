@@ -44,6 +44,7 @@ $(document).ready(function() {
 				$('#qrcode').hide();
 				$('.token').addClass('visible');
 			} else {
+				alert("Wrong Credentials");
 				console.log('notdone');
 			}
 		});
@@ -61,7 +62,13 @@ $(document).ready(function() {
 		});
 		console.log(req);
 		$.post('/checktoken', req, function(data) {
-			console.log(data + "token confirmed");
+			console.log(data + "token");
+			if(data){
+				window.location.replace('http://localhost:4000/dashboard');
+			}
+			else{
+				alert("token invalid");
+			}
 		});
 	});
 });
