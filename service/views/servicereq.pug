@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title service|request
+    link(rel='stylesheet', type='text/css', href='../res/css/main.css')
+    script(type='text/javascript', src='../res/js/jquery-3.1.1.min.js')
+    script(type='text/javascript', src='../res/js/main.js')
+  body
+    .title
+      h2 service_main
+    #req_details
+      #req.req_form
+        form
+          br
+          |  
+          input(type='radio', name='req_name', value='plainlogin', checked='')
+          |  
+          label(for='plainlogin') plainlogin
+          br
+          |  
+          input(type='radio', name='req_name', value='twofactorauth')
+          |  
+          label(for='twofactorauth') twofactorauth
+          br
+          |  
+      #code.code_form
+        textarea#code_tobecopied(placeholder='code to be copied')
+        |  
+        button#logout_btn.btn(name='button') logout
