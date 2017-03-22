@@ -6,7 +6,68 @@
 /*  0.  CSS Reset
 /*-----------------------------------------------------------------------------------*/
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
   margin: 0;
   padding: 0;
   border: 0;
@@ -20,15 +81,20 @@ body {
   line-height: 1;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
 
-blockquote:before, blockquote:after, q:before, q:after {
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
   content: '';
   content: none;
 }
@@ -58,7 +124,8 @@ table {
   background: rgba(124, 196, 255, 0.7);
 }
 
-html, body {
+html,
+body {
   font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
   font-size: 12px;
   position: static;
@@ -142,7 +209,9 @@ body {
   cursor: pointer;
 }
 
-.form button:hover, .form button:active, .form button:focus {
+.form button:hover,
+.form button:active,
+.form button:focus {
   background: #43A047;
 }
 
@@ -177,68 +246,45 @@ body {
   font-weight: bold;
 }
 
-
-/* QRcode */
-
-.twofactor-page {
+#req_details {
   position: relative;
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
-  visibility: hidden;
-  display: none;
   -webkit-transition: all 3s ease-in-out;
   -moz-transition: all 3s ease-in-out;
   -ms-transition: all 3s ease-in-out;
   -o-transition: all 3s ease-all;
 }
-
-#qrcode {
+#code_tobecopied {
+  width: 100%;
+}
+.req_form {
   position: relative;
   z-index: 1;
   background: #FFFFFF;
   max-width: 360px;
+  margin: 0 auto 100px;
   padding: 45px;
-  text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-
-.twofactor-page button {
+.req_form label {
   font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
   outline: 0;
-  background: #4CAF50;
-  width: 100%;
   border: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+.req_form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  border: 0;
+  margin: 0 0 15px;
   padding: 15px;
-  color: #FFFFFF;
+  box-sizing: border-box;
   font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
 }
-
-.twofactor-page button:hover, .twofactor-page button:active, .twofactor-page button:focus {
-  background: #43A047;
-}
-
-
-/* token */
-
-.token {
-  position: relative;
-  width: 360px;
-  padding: 8% 0 0;
-  margin: auto;
-  visibility: hidden;
-  display: none;
-  -webkit-transition: all 3s ease-in-out;
-  -moz-transition: all 3s ease-in-out;
-  -ms-transition: all 3s ease-in-out;
-  -o-transition: all 3s ease-all;
-}
-
-.token-form {
+.code_form {
   position: relative;
   z-index: 1;
   background: #FFFFFF;
@@ -249,34 +295,25 @@ body {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-.token-form input {
-  font-family: "Roboto", sans-serif;
-  outline: 0;
-  background: #f2f2f2;
-  width: 100%;
-  border: 0;
-  margin: 0 0 15px;
-  padding: 15px;
-  box-sizing: border-box;
-  font-size: 14px;
+.btn {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  margin-top: 30px;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 20px;
+  background: #008deb;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
 }
 
-.token-form button {
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: #4CAF50;
-  width: 100%;
-  border: 0;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
-}
-
-.visible {
-  visibility: visible;
-  display: block;
+.btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
 }
