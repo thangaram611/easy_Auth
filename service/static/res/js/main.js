@@ -17,6 +17,7 @@ $(document).ready(function() {
 		$.post('/register', req, function(data) {
 			if (data) {
 				console.log('done');
+				window.location.pathname = "";
 			} else {
 				console.log('notdone');
 			}

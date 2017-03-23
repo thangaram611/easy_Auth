@@ -7,6 +7,7 @@ var http = require('http');
 var session = require('express-session');
 const pug = require('pug');
 var rand = require("random-key");
+var cryptico = require("cryptico-js");
 
 var app = express();
 var port = 8080;
@@ -18,7 +19,23 @@ app.use(express.static('static'));
 app.set('view engine', 'pug')
 app.use(session({ secret: 'SECRETKEY611', resave: true, saveUninitialized: true }));
 
-// admin
+//encryption
+
+var PassPhrase = "this is the security code";
+var Bits = 1024;
+var MyRSAkey = cryptico.generateRSAKey(PassPhrase, Bits);
+var MyPublicKeyString = cryptico.publicKeyString(MyRSAkey);
+
+var myencrypt = function(PlainText) {
+	var obj = cryptico.encrypt(PlainText, MyPublicKeyString);
+	return obj.cipher;
+}
+var mydecrypt = function(CipherText) {
+		var obj = cryptico.decrypt(CipherText, MyRSAkey);
+		console.log(obj.plaintext);
+		return obj.plaintext;
+	}
+	// admin
 
 
 // rendering html
@@ -34,7 +51,7 @@ app.post('/register', function(req, res) {
 	sess = req.session;
 	sess.email = req.body.email;
 	req.body.uniqid = rand.generate(8);
-	console.log("register" + req.body.uniqid);
+	req.body.pass = myencrypt(req.body.pass);
 	registrations.insert(req.body, function(err) {
 		if (err) {
 			console.log(err);
@@ -51,6 +68,9 @@ app.post('/checkregistered', function(req, res) {
 		if (err) {
 			console.log(err);
 		} else if (doc) {
+			console.log(doc.pass);
+			doc.pass = mydecrypt(doc.pass);
+			console.log(doc.pass);
 			if (doc.pass == req.body.pass) {
 				sess.uniqid = doc.uniqid;
 				res.send(true);
@@ -101,6 +121,7 @@ app.post('/user/:adminid/login', function(req, res) {
 		if (err) {
 			console.log(err);
 		} else if (doc) {
+			doc.pass = mydecrypt(doc.pass);
 			if (doc.pass == req.body.pass) {
 				res.send(true);
 			} else {
@@ -114,6 +135,7 @@ app.post('/user/:adminid/login', function(req, res) {
 app.post('/user/:userid/register', function(req, res) {
 	var id = req.params.userid;
 	console.log(req.body);
+	req.body.pass = myencrypt(req.body.pass);
 	var userdb = mongojs('mongodb://localhost:27017/userdb');
 	var userregistrations = userdb.collection('userregistrations_' + id);
 	req.body.uniqid = rand.generate(8);
@@ -155,8 +177,7 @@ app.post('/user/:userid/checktoken', function(req, res) {
 		if (token == req.body.token) {
 			verified = true;
 			res.send(true);
-		}
-		else{
+		} else {
 			res.send(false);
 		}
 	});
